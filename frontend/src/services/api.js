@@ -9,7 +9,12 @@ const API = axios.create({
   },
 });
 
+// Student Prediction
 export const predict = (data) => {
+  return API.post('/predict', data);
+};
+
+export const predictStudent = (data) => {
   return API.post('/predict', data);
 };
 
@@ -23,6 +28,37 @@ export const getModelMetrics = () => {
 
 export const getTrainingStatus = () => {
   return API.get('/train/status');
+};
+
+// Teacher Authentication
+export const teacherRegister = (data) => {
+  return API.post('/teacher/register', data);
+};
+
+export const teacherLogin = (data) => {
+  return API.post('/teacher/login', data);
+};
+
+export const getTeacherInfo = (token) => {
+  return API.get('/teacher/me', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+// Teacher CSV Upload
+export const uploadCSV = (file, token) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  return API.post('/teacher/upload/csv', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const downloadCSVTemplate = () => {
+  return API.get('/teacher/upload/download-template');
 };
 
 export default API;
