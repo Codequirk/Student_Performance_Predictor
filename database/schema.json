@@ -1,0 +1,165 @@
+{
+  "students": {
+    "type": "collection",
+    "description": "Student records and their performance data",
+    "schema": {
+      "name": {
+        "type": "string",
+        "description": "Student full name"
+      },
+      "roll_number": {
+        "type": "string",
+        "description": "Student roll number",
+        "unique": true
+      },
+      "email": {
+        "type": "string",
+        "description": "Student email address",
+        "unique": true
+      },
+      "department": {
+        "type": "string",
+        "description": "Department (CSE, ECE, Mechanical, etc.)",
+        "enum": ["CSE", "ECE", "Mechanical", "Civil", "Chemical", "Electrical"]
+      },
+      "semester": {
+        "type": "integer",
+        "description": "Current semester (1-8)",
+        "min": 1,
+        "max": 8
+      },
+      "attendance": {
+        "type": "float",
+        "description": "Attendance percentage (0-100)",
+        "min": 0,
+        "max": 100
+      },
+      "assignment_score": {
+        "type": "float",
+        "description": "Average assignment score (0-100)",
+        "min": 0,
+        "max": 100
+      },
+      "internal_marks": {
+        "type": "float",
+        "description": "Internal examination marks (0-50)",
+        "min": 0,
+        "max": 50
+      },
+      "prev_cgpa": {
+        "type": "float",
+        "description": "Previous semester CGPA (0-10)",
+        "min": 0,
+        "max": 10
+      },
+      "study_hours": {
+        "type": "float",
+        "description": "Daily study hours (0-24)",
+        "min": 0,
+        "max": 24
+      },
+      "sleep_hours": {
+        "type": "float",
+        "description": "Daily sleep hours (0-24)",
+        "min": 0,
+        "max": 24
+      },
+      "created_at": {
+        "type": "datetime",
+        "description": "Record creation timestamp"
+      },
+      "updated_at": {
+        "type": "datetime",
+        "description": "Last update timestamp"
+      }
+    }
+  },
+  "predictions": {
+    "type": "collection",
+    "description": "Student performance predictions",
+    "schema": {
+      "student_name": {
+        "type": "string",
+        "description": "Student name"
+      },
+      "roll_number": {
+        "type": "string",
+        "description": "Student roll number"
+      },
+      "attendance": {
+        "type": "float",
+        "description": "Attendance percentage"
+      },
+      "assignment_score": {
+        "type": "float",
+        "description": "Assignment score"
+      },
+      "internal_marks": {
+        "type": "float",
+        "description": "Internal marks"
+      },
+      "prev_cgpa": {
+        "type": "float",
+        "description": "Previous CGPA"
+      },
+      "study_hours": {
+        "type": "float",
+        "description": "Study hours"
+      },
+      "sleep_hours": {
+        "type": "float",
+        "description": "Sleep hours"
+      },
+      "predicted_score": {
+        "type": "float",
+        "description": "Predicted score (0-100)"
+      },
+      "predicted_category": {
+        "type": "string",
+        "description": "Predicted performance category",
+        "enum": ["Poor", "Average", "Good", "Excellent"]
+      },
+      "probabilities": {
+        "type": "object",
+        "description": "Probability distribution over categories"
+      },
+      "created_at": {
+        "type": "datetime",
+        "description": "Prediction timestamp"
+      }
+    }
+  },
+  "users": {
+    "type": "collection",
+    "description": "User accounts for dashboard access",
+    "schema": {
+      "username": {
+        "type": "string",
+        "description": "Username",
+        "unique": true
+      },
+      "email": {
+        "type": "string",
+        "description": "Email address",
+        "unique": true
+      },
+      "password_hash": {
+        "type": "string",
+        "description": "Hashed password"
+      },
+      "role": {
+        "type": "string",
+        "description": "User role",
+        "enum": ["student", "teacher", "admin"]
+      },
+      "created_at": {
+        "type": "datetime",
+        "description": "Account creation timestamp"
+      },
+      "updated_at": {
+        "type": "datetime",
+        "description": "Last update timestamp"
+      }
+    }
+  }
+}

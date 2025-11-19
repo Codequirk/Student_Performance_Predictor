@@ -1,0 +1,137 @@
+{
+  "students": [
+    {
+      "name": "Amit Kumar",
+      "roll_number": "20CS001",
+      "email": "amit.kumar@university.edu",
+      "department": "CSE",
+      "semester": 5,
+      "attendance": 85,
+      "assignment_score": 78,
+      "internal_marks": 45,
+      "prev_cgpa": 8.2,
+      "study_hours": 4.5,
+      "sleep_hours": 7.0,
+      "created_at": "2025-11-18T10:00:00Z",
+      "updated_at": "2025-11-18T10:00:00Z"
+    },
+    {
+      "name": "Priya Sharma",
+      "roll_number": "20CS002",
+      "email": "priya.sharma@university.edu",
+      "department": "CSE",
+      "semester": 5,
+      "attendance": 92,
+      "assignment_score": 95,
+      "internal_marks": 48,
+      "prev_cgpa": 9.1,
+      "study_hours": 6.0,
+      "sleep_hours": 7.5,
+      "created_at": "2025-11-18T10:05:00Z",
+      "updated_at": "2025-11-18T10:05:00Z"
+    },
+    {
+      "name": "Rahul Singh",
+      "roll_number": "20ECE001",
+      "email": "rahul.singh@university.edu",
+      "department": "ECE",
+      "semester": 5,
+      "attendance": 72,
+      "assignment_score": 65,
+      "internal_marks": 38,
+      "prev_cgpa": 6.8,
+      "study_hours": 3.0,
+      "sleep_hours": 6.5,
+      "created_at": "2025-11-18T10:10:00Z",
+      "updated_at": "2025-11-18T10:10:00Z"
+    },
+    {
+      "name": "Neha Gupta",
+      "roll_number": "20ME001",
+      "email": "neha.gupta@university.edu",
+      "department": "Mechanical",
+      "semester": 5,
+      "attendance": 88,
+      "assignment_score": 82,
+      "internal_marks": 42,
+      "prev_cgpa": 7.9,
+      "study_hours": 5.0,
+      "sleep_hours": 7.2,
+      "created_at": "2025-11-18T10:15:00Z",
+      "updated_at": "2025-11-18T10:15:00Z"
+    },
+    {
+      "name": "Arjun Patel",
+      "roll_number": "20CIVIL001",
+      "email": "arjun.patel@university.edu",
+      "department": "Civil",
+      "semester": 5,
+      "attendance": 58,
+      "assignment_score": 52,
+      "internal_marks": 35,
+      "prev_cgpa": 5.5,
+      "study_hours": 2.5,
+      "sleep_hours": 6.0,
+      "created_at": "2025-11-18T10:20:00Z",
+      "updated_at": "2025-11-18T10:20:00Z"
+    }
+  ],
+  "predictions": [
+    {
+      "student_name": "Amit Kumar",
+      "roll_number": "20CS001",
+      "attendance": 85,
+      "assignment_score": 78,
+      "internal_marks": 45,
+      "prev_cgpa": 8.2,
+      "study_hours": 4.5,
+      "sleep_hours": 7.0,
+      "predicted_score": 78.5,
+      "predicted_category": "Good",
+      "probabilities": {
+        "Poor": 0.01,
+        "Average": 0.08,
+        "Good": 0.65,
+        "Excellent": 0.26
+      },
+      "created_at": "2025-11-18T10:00:00Z"
+    },
+    {
+      "student_name": "Priya Sharma",
+      "roll_number": "20CS002",
+      "attendance": 92,
+      "assignment_score": 95,
+      "internal_marks": 48,
+      "prev_cgpa": 9.1,
+      "study_hours": 6.0,
+      "sleep_hours": 7.5,
+      "predicted_score": 92.3,
+      "predicted_category": "Excellent",
+      "probabilities": {
+        "Poor": 0.0,
+        "Average": 0.01,
+        "Good": 0.15,
+        "Excellent": 0.84
+      },
+      "created_at": "2025-11-18T10:05:00Z"
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@university.edu",
+      "password_hash": "$2b$12$8f4DqXW5K5c8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8",
+      "role": "admin",
+      "created_at": "2025-11-18T00:00:00Z",
+      "updated_at": "2025-11-18T00:00:00Z"
+    },
+    {
+      "username": "teacher1",
+      "email": "teacher1@university.edu",
+      "password_hash": "$2b$12$8f4DqXW5K5c8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8x8z8",
+      "role": "teacher",
+      "created_at": "2025-11-18T00:00:00Z",
+      "updated_at": "2025-11-18T00:00:00Z"
+    }
+  ]
+}

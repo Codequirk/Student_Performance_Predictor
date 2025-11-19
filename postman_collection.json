@@ -1,0 +1,201 @@
+{
+  "info": {
+    "name": "Student Performance Predictor API",
+    "description": "API collection for Student Performance Predictor system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": [""]
+            },
+            "description": "Check if API is running"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predictions",
+      "item": [
+        {
+          "name": "Predict (Good Performance)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendance\": 85,\n  \"assignment_score\": 78,\n  \"internal_marks\": 45,\n  \"prev_cgpa\": 8.2,\n  \"study_hours\": 4.5,\n  \"sleep_hours\": 7.0,\n  \"student_name\": \"Amit Kumar\",\n  \"roll_number\": \"20CS001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/predict",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["predict"]
+            },
+            "description": "Predict performance for good student"
+          }
+        },
+        {
+          "name": "Predict (Excellent Performance)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendance\": 92,\n  \"assignment_score\": 95,\n  \"internal_marks\": 48,\n  \"prev_cgpa\": 9.1,\n  \"study_hours\": 6.0,\n  \"sleep_hours\": 7.5,\n  \"student_name\": \"Priya Sharma\",\n  \"roll_number\": \"20CS002\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/predict",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["predict"]
+            },
+            "description": "Predict performance for excellent student"
+          }
+        },
+        {
+          "name": "Predict (Average Performance)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendance\": 72,\n  \"assignment_score\": 65,\n  \"internal_marks\": 38,\n  \"prev_cgpa\": 6.8,\n  \"study_hours\": 3.0,\n  \"sleep_hours\": 6.5,\n  \"student_name\": \"Rahul Singh\",\n  \"roll_number\": \"20ECE001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/predict",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["predict"]
+            },
+            "description": "Predict performance for average student"
+          }
+        },
+        {
+          "name": "Predict (Poor Performance)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendance\": 58,\n  \"assignment_score\": 52,\n  \"internal_marks\": 35,\n  \"prev_cgpa\": 5.5,\n  \"study_hours\": 2.5,\n  \"sleep_hours\": 6.0,\n  \"student_name\": \"Arjun Patel\",\n  \"roll_number\": \"20CIVIL001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/predict",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["predict"]
+            },
+            "description": "Predict performance for poor student"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Model Information",
+      "item": [
+        {
+          "name": "Get Model Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/model-info",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["model-info"]
+            },
+            "description": "Get information about the trained model"
+          }
+        },
+        {
+          "name": "Get Model Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/model-info/metrics",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["model-info", "metrics"]
+            },
+            "description": "Get model performance metrics"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Training",
+      "item": [
+        {
+          "name": "Get Training Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/train/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["train", "status"]
+            },
+            "description": "Get model training status"
+          }
+        },
+        {
+          "name": "Retrain Model",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/train",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["train"]
+            },
+            "description": "Request model retraining (not implemented in demo)"
+          }
+        }
+      ]
+    }
+  ]
+}
