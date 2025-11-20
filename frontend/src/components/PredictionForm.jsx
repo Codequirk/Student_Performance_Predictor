@@ -224,13 +224,13 @@ export default function PredictionForm() {
       </div>
 
       {/* Assignments Section */}
-      <div className={`mb-6 p-4 rounded-lg ${isDarkMode ? 'bg-blue-900 border border-blue-700' : 'bg-blue-50'}`}>
+      <div className={`mb-6 p-4 rounded-lg ${isDarkMode ? 'bg-gradient-to-r from-slate-600 to-violet-800' : 'bg-violet-50'}`}>
         <div className="flex justify-between items-center mb-4">
           <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-blue-200' : 'text-gray-800'}`}>Assignments</h3>
           <button
             type="button"
             onClick={addAssignment}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            className="px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition"
           >
             + Add Assignment
           </button>
@@ -241,7 +241,7 @@ export default function PredictionForm() {
             <div className="mb-3">
               <input
                 type="text"
-                placeholder="Subject name (e.g., Math)"
+                placeholder="Subject name"
                 value={assignment.subject_name}
                 onChange={(e) => handleAssignmentChange(index, "subject_name", e.target.value)}
                 className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${isDarkMode ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
@@ -284,7 +284,7 @@ export default function PredictionForm() {
               <button
                 type="button"
                 onClick={() => removeAssignment(index)}
-                className="mt-2 px-3 py-1 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600"
+                className="mt-2 px-3 py-1 bg-red-900 text-white text-sm rounded-lg hover:bg-gray-900"
               >
                 Remove
               </button>
@@ -311,7 +311,7 @@ export default function PredictionForm() {
             <div className="mb-3">
               <input
                 type="text"
-                placeholder="Subject name (e.g., Physics)"
+                placeholder="Subject name"
                 value={subject.subject_name}
                 onChange={(e) => handleSubjectChange(index, "subject_name", e.target.value)}
                 className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 ${isDarkMode ? 'bg-gray-600 border-gray-500 text-white placeholder-gray-400' : 'border-gray-300 bg-white'}`}
@@ -354,7 +354,7 @@ export default function PredictionForm() {
               <button
                 type="button"
                 onClick={() => removeSubject(index)}
-                className="mt-2 px-3 py-1 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600"
+                className="mt-2 px-3 py-1 from bg-red-900 to bg text-white text-sm rounded-lg hover:bg-gray-900"
               >
                 Remove
               </button>
@@ -366,7 +366,7 @@ export default function PredictionForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition disabled:opacity-50"
+        className="w-full px-6 py-3 bg-gradient-to-r from-violet-600 to-violet-600 text-white font-bold rounded-lg hover:shadow-lg transition disabled:opacity-50"
       >
         {loading ? "Predicting..." : "Get Prediction"}
       </button>

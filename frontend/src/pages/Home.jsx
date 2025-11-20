@@ -17,7 +17,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <div className={`${isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white'} rounded-lg shadow-lg p-6 hover:shadow-xl transition`}>
-            <div className="text-4xl mb-4">📊</div>
+            <div className="text-4xl mb-4">⧉</div>
             <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Data-Driven Insights</h3>
             <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
               Our model analyzes your attendance, assignments, internal marks, CGPA, study hours, and sleep patterns to provide accurate predictions.
@@ -25,7 +25,7 @@ export default function Home() {
           </div>
 
           <div className={`${isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white'} rounded-lg shadow-lg p-6 hover:shadow-xl transition`}>
-            <div className="text-4xl mb-4">🤖</div>
+            <div className="text-4xl mb-4">△</div>
             <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'} mb-2`}>AI-Powered</h3>
             <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
               Built with Random Forest, Logistic Regression, SVM, and XGBoost models to ensure high accuracy and reliability.
@@ -33,7 +33,7 @@ export default function Home() {
           </div>
 
           <div className={`${isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white'} rounded-lg shadow-lg p-6 hover:shadow-xl transition`}>
-            <div className="text-4xl mb-4">📈</div>
+            <div className="text-4xl mb-4">⧎</div>
             <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'} mb-2`}>Performance Metrics</h3>
             <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
               Get detailed probability distributions and category predictions (Poor, Average, Good, Excellent) for your performance.
@@ -45,7 +45,7 @@ export default function Home() {
           <h2 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'} mb-6`}>How It Works</h2>
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full font-bold flex-shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-slate-600 to-violet-800 text-white rounded-full font-bold flex-shrink-0">
                 1
               </div>
               <div>
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full font-bold flex-shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-slate-600 to-violet-800 text-white rounded-full font-bold flex-shrink-0">
                 2
               </div>
               <div>
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 text-white rounded-full font-bold flex-shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-slate-600 to-violet-800 text-white rounded-full font-bold flex-shrink-0">
                 3
               </div>
               <div>
@@ -76,12 +76,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={`${isDarkMode ? 'bg-gradient-to-r from-blue-700 to-indigo-700' : 'bg-gradient-to-r from-blue-600 to-indigo-600'} rounded-lg shadow-lg p-8 text-white text-center`}>
+        <div className={`${isDarkMode ? 'bg-gradient-to-r from-slate-600 to-violet-800' : 'bg-gradient-to-r from-slate-600 to-violet-800'} rounded-lg shadow-lg p-8 text-white text-center`}>
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-lg mb-6">Navigate to the Predict page to see your performance prediction.</p>
           <a
             href="/predict"
-            className={`inline-block px-8 py-3 rounded-lg font-semibold transition ${isDarkMode ? 'bg-gray-200 text-blue-700 hover:bg-gray-300' : 'bg-white text-blue-600 hover:bg-gray-100'}`}
+            className={`inline-block px-8 py-3 rounded-lg font-semibold transition ${isDarkMode ? 'bg-gray-200 text-black hover:bg-gray-300' : 'bg-white text-black hover:bg-gray-100'}`}
           >
             Make a Prediction
           </a>

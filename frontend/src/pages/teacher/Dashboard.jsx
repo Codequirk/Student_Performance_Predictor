@@ -189,7 +189,7 @@ function Dashboard() {
                     <span className="font-semibold">Name:</span> {teacherInfo.full_name}
                   </p>
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                    <span className="font-semibold">School:</span> {teacherInfo.school_name}
+                    <span className="font-semibold">College:</span> {teacherInfo.school_name}
                   </p>
                   <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
                     <span className="font-semibold">Email:</span> {teacherInfo.email}
@@ -199,7 +199,7 @@ function Dashboard() {
             </div>
             <button
               onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+              className="bg-red-700 hover:bg-red-900 text-white font-semibold py-2 px-4 rounded-lg transition"
             >
               Logout
             </button>
@@ -245,9 +245,9 @@ function Dashboard() {
           {/* Template Download */}
           <button
             onClick={downloadTemplate}
-            className="mb-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition inline-block"
+            className="mb-6 bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-lg transition inline-block"
           >
-            📥 Download CSV Template
+             Download CSV Template
           </button>
 
           {/* File Upload Form */}
@@ -282,7 +282,7 @@ function Dashboard() {
               disabled={uploading || !csvFile}
               className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {uploading ? 'Processing...' : '🚀 Upload & Process'}
+              {uploading ? 'Processing...' : ' Upload & Process'}
             </button>
           </form>
         </div>

@@ -6,6 +6,7 @@ import csv
 import io
 import joblib
 import numpy as np
+import pandas as pd
 import os
 from pymongo import MongoClient
 from datetime import datetime
@@ -31,11 +32,21 @@ def get_current_teacher_email(authorization: str = Header(None)):
 def load_ml_model():
     """Load trained ML model"""
     try:
-        model = joblib.load("model/model.pkl")
-        scaler = joblib.load("model/scaler.pkl")
-        le = joblib.load("model/label_encoder.pkl")
+        # Get the correct path to model files
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        backend_dir = os.path.dirname(current_dir)
+        model_dir = os.path.join(backend_dir, "model")
+        
+        model_path = os.path.join(model_dir, "model.pkl")
+        scaler_path = os.path.join(model_dir, "scaler.pkl")
+        le_path = os.path.join(model_dir, "label_encoder.pkl")
+        
+        model = joblib.load(model_path)
+        scaler = joblib.load(scaler_path)
+        le = joblib.load(le_path)
         return model, scaler, le
-    except:
+    except Exception as e:
+        print(f"Error loading model: {e}")
         return None, None, None
 
 @router.post("/csv", summary="Upload and process CSV for batch predictions")
@@ -98,23 +109,27 @@ async def process_csv(
                 avg_subject = np.mean(subject_marks)
                 internal_marks = min(50, avg_assignment * 0.5)
                 
-                # Prepare feature array
-                X = np.array([[
-                    attendance,
-                    avg_assignment,
-                    internal_marks,
-                    prev_cgpa,
-                    study_hours,
-                    sleep_hours
-                ]])
+                # Create DataFrame with EXACT feature names matching training data
+                input_df = pd.DataFrame({
+                    'attendance': [attendance],
+                    'assignment_score': [avg_assignment],
+                    'internal_marks': [internal_marks],
+                    'prev_cgpa': [prev_cgpa],
+                    'study_hours': [study_hours],
+                    'sleep_hours': [sleep_hours]
+                })
                 
-                X_scaled = scaler.transform(X)
+                # Ensure column order matches training data
+                feature_names = ['attendance', 'assignment_score', 'internal_marks', 'prev_cgpa', 'study_hours', 'sleep_hours']
+                input_df = input_df[feature_names]
+                
+                X_scaled = scaler.transform(input_df)
                 pred_label = model.predict(X_scaled)[0]
                 pred_proba = model.predict_proba(X_scaled)[0]
                 pred_category = le.inverse_transform([pred_label])[0]
                 
-                # Calculate score
-                pred_score = float(np.dot(pred_proba, [55, 80, 35]))
+                # Calculate score with 4 classes: Average=55, Excellent=90, Good=75, Poor=35
+                pred_score = float(np.dot(pred_proba, [55, 90, 75, 35]))
                 pred_score = min(100, max(0, pred_score))
                 
                 # Determine pass/fail based on average subject marks (>= 40% = PASS)

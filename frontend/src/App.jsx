@@ -16,10 +16,10 @@ function AppContent() {
     <Router>
       <div className={`min-h-screen flex flex-col ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
         {/* Navigation Bar */}
-        <nav className={`${isDarkMode ? 'bg-gray-800 border-b border-gray-700' : 'bg-gradient-to-r from-blue-600 to-indigo-600'} text-white shadow-lg`}>
+        <nav className={`${isDarkMode ? 'bg-gradient-to-r from-slate-600 to-violet-800' : 'bg-gradient-to-r from-slate-600 to-violet-800'} text-white shadow-lg`}>
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2 text-2xl font-bold hover:opacity-90 transition">
-              <span>⌘</span>
+              <span>◇</span>
               <span>Student Predictor</span>
             </Link>
 

@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field, validator
 import joblib
 import numpy as np
+import pandas as pd
 from utils.logger import log_prediction
 from datetime import datetime
 from pymongo import MongoClient
@@ -64,11 +65,23 @@ class PredictResponse(BaseModel):
 
 # Load model and preprocessors
 try:
-    model = joblib.load("model/model.pkl")
-    scaler = joblib.load("model/scaler.pkl")
-    le = joblib.load("model/label_encoder.pkl")
+    # Get the directory of the current file and go up to backend, then to model
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    backend_dir = os.path.dirname(current_dir)
+    model_dir = os.path.join(backend_dir, "model")
+    
+    model_path = os.path.join(model_dir, "model.pkl")
+    scaler_path = os.path.join(model_dir, "scaler.pkl")
+    le_path = os.path.join(model_dir, "label_encoder.pkl")
+    
+    model = joblib.load(model_path)
+    scaler = joblib.load(scaler_path)
+    le = joblib.load(le_path)
+    print(f"✓ Model loaded successfully from {model_path}")
 except Exception as e:
     print(f"Error loading model: {e}")
+    print(f"Attempted to load from: {model_path if 'model_path' in locals() else 'model/model.pkl'}")
     model = None
     scaler = None
     le = None
@@ -106,24 +119,32 @@ def predict_performance(data: PredictRequest):
         # Internal marks approximation from assignment percentage
         internal_marks = min(50, assignment_percentage * 0.5)
         
-        # Prepare feature array (6 features for model)
-        X = np.array([[
-            data.attendance,
-            assignment_percentage,
-            internal_marks,
-            data.prev_cgpa,
-            data.study_hours,
-            data.sleep_hours
-        ]])
+        # Create DataFrame with EXACT feature names and ORDER used during training
+        # CRITICAL: Order must match exactly: attendance, assignment_score, internal_marks, prev_cgpa, study_hours, sleep_hours
+        input_df = pd.DataFrame({
+            'attendance': [data.attendance],
+            'assignment_score': [assignment_percentage],
+            'internal_marks': [internal_marks],
+            'prev_cgpa': [data.prev_cgpa],
+            'study_hours': [data.study_hours],
+            'sleep_hours': [data.sleep_hours]
+        })
         
-        X_scaled = scaler.transform(X)
+        # Ensure column order matches training data
+        feature_names = ['attendance', 'assignment_score', 'internal_marks', 'prev_cgpa', 'study_hours', 'sleep_hours']
+        input_df = input_df[feature_names]
+        
+        # Scale and predict using the DataFrame
+        X_scaled = scaler.transform(input_df)
         pred_label = model.predict(X_scaled)[0]
         pred_proba = model.predict_proba(X_scaled)[0]
         pred_category = le.inverse_transform([pred_label])[0]
         
-        # Calculate weighted score (3 categories: Average=0, Good=1, Poor=2)
-        score_mapping = {0: 55, 1: 80, 2: 35}  # Average, Good, Poor
-        pred_score = float(np.dot(pred_proba, [55, 80, 35]))
+        # Calculate weighted score based on predicted probabilities
+        # Label classes are: ['Average', 'Excellent', 'Good', 'Poor']
+        # Assign scores: Average=55, Excellent=90, Good=75, Poor=35
+        score_mapping = {0: 55, 1: 90, 2: 75, 3: 35}  # Average, Excellent, Good, Poor
+        pred_score = float(np.dot(pred_proba, [55, 90, 75, 35]))
         pred_score = min(100, max(0, pred_score))
         
         # Calculate subject performance flags and pass/fail status
@@ -223,5 +244,18 @@ def predict_performance(data: PredictRequest):
         )
     
     except Exception as e:
-        log_prediction({"error": str(e), "data": data.dict()})
-        raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
+        error_msg = f"Prediction error: {str(e)}"
+        log_prediction({"error": error_msg, "data": data.dict() if data else {}})
+        print(f"[ERROR] {error_msg}")
+        raise HTTPException(status_code=500, detail=error_msg)
+
+
+@router.get("/health", tags=["Health"])
+def predict_health():
+    """Health check for predict route"""
+    return {
+        "status": "OK",
+        "model_loaded": model is not None,
+        "scaler_loaded": scaler is not None,
+        "encoder_loaded": le is not None
+    }

@@ -127,7 +127,7 @@ function Login() {
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`
               }`}
-              placeholder="your.email@school.com"
+              placeholder="your.email@.com"
               disabled={loading}
             />
             {errors.email && (
