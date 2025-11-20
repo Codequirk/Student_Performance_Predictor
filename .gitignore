@@ -73,3 +73,6 @@ credentials.json
 *.tmp
 *.temp
 ~*
+
+demo/Videos/
+*.mp4
